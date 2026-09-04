@@ -1,0 +1,18 @@
+{
+  "type": "decisionFeedback",
+  "description": "EDGE CASE - unrecognized mentorPersona value, should fall back to default without crashing",
+
+  "month": 2,
+  "scenario": { "title": "Housing", "narrative": "You need to decide where to live." },
+  "choice": { "id": "OPT_C", "text": "Shared apartment" },
+
+  "previousState": { "month": 2, "savings": 20000, "emergencyFund": 0, "investments": 0, "debt": 0, "netWorth": 20000 },
+  "newState": { "month": 3, "savings": 32000, "emergencyFund": 0, "investments": 0, "debt": 0, "netWorth": 32000 },
+
+  "immediateImpact": { "savingsDelta": 12000, "investmentsDelta": 0, "debtDelta": 0, "netWorthDelta": 12000 },
+  "projected12MonthImpact": { "netWorthDelta": 3000 },
+
+  "choiceHistorySoFar": [],
+
+  "mentorPersona": "some_typo_value_that_doesnt_exist"
+}

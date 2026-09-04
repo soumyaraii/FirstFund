@@ -1,0 +1,25 @@
+{
+  "type": "decisionFeedback",
+  "description": "Month 4 - Credit Card Trap - user takes the EMI (bad decision), strict persona",
+
+  "month": 4,
+  "scenario": {
+    "title": "Credit Card Trap",
+    "narrative": "You receive an offer for a brand new smartphone: 'Buy now and pay only ₹3,000/month with No-Cost EMI!' Total cost is ₹36,000."
+  },
+  "choice": { "id": "OPT_A", "text": "Buy using 12-month EMI (₹3,000/month)" },
+
+  "previousState": { "month": 4, "savings": 82000, "emergencyFund": 20000, "investments": 40000, "debt": 0, "netWorth": 142000 },
+  "newState": { "month": 5, "savings": 82000, "emergencyFund": 20000, "investments": 40000, "debt": 36000, "netWorth": 106000 },
+
+  "immediateImpact": { "savingsDelta": 0, "investmentsDelta": 0, "debtDelta": 36000, "netWorthDelta": -36000 },
+  "projected12MonthImpact": { "netWorthDelta": -41200 },
+
+  "choiceHistorySoFar": [
+    { "month": 1, "choiceId": "OPT_B", "tag": "SAVING_DISCIPLINE" },
+    { "month": 2, "choiceId": "OPT_A", "tag": "FRUGAL_HOUSING" },
+    { "month": 3, "choiceId": "OPT_C", "tag": "SKIPPED_INSURANCE" }
+  ],
+
+  "mentorPersona": "strict"
+}

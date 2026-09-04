@@ -1,0 +1,41 @@
+{
+  "type": "finalSummary",
+  "description": "Month 12 - Final scorecard - Balanced Planner personality",
+
+  "totalScore": 78,
+  "metrics": {
+    "emergencyReadiness": 82,
+    "savingDiscipline": 91,
+    "riskManagement": 64,
+    "spendingDiscipline": 72,
+    "investmentBehaviour": 78
+  },
+  "financials": {
+    "startingNetWorth": 0,
+    "finalNetWorth": 284500,
+    "totalSavings": 120000,
+    "totalInvestments": 145000,
+    "emergencyFund": 25000,
+    "remainingDebt": 5500
+  },
+  "trajectory": [
+    { "month": 1, "netWorth": 35000 },
+    { "month": 2, "netWorth": 68000 },
+    { "month": 3, "netWorth": 95000 },
+    { "month": 4, "netWorth": 106000 },
+    { "month": 7, "netWorth": 130000 },
+    { "month": 12, "netWorth": 284500 }
+  ],
+  "personality": "Balanced Planner",
+  "fullChoiceHistory": [
+    { "month": 1, "tag": "SAVING_DISCIPLINE" },
+    { "month": 2, "tag": "FRUGAL_HOUSING" },
+    { "month": 3, "tag": "SIP_INVESTMENT" },
+    { "month": 4, "tag": "TOOK_DEBT" },
+    { "month": 5, "tag": "BOUGHT_INSURANCE" },
+    { "month": 6, "tag": "RISK_TAKING" },
+    { "month": 7, "tag": "EMERGENCY_FUND" }
+  ],
+
+  "mentorPersona": "supportive"
+}

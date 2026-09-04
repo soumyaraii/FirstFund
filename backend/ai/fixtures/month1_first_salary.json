@@ -1,0 +1,21 @@
+{
+  "type": "decisionFeedback",
+  "description": "Month 1 - First Salary - user splits money between saving and spending",
+
+  "month": 1,
+  "scenario": {
+    "title": "First Salary",
+    "narrative": "You just received your first salary. What will you do?"
+  },
+  "choice": { "id": "OPT_D", "text": "Split money between spending and saving" },
+
+  "previousState": { "month": 1, "savings": 0, "emergencyFund": 0, "investments": 0, "debt": 0, "netWorth": 0 },
+  "newState": { "month": 2, "savings": 18000, "emergencyFund": 0, "investments": 0, "debt": 0, "netWorth": 18000 },
+
+  "immediateImpact": { "savingsDelta": 18000, "investmentsDelta": 0, "debtDelta": 0, "netWorthDelta": 18000 },
+  "projected12MonthImpact": { "netWorthDelta": 4200 },
+
+  "choiceHistorySoFar": [],
+
+  "mentorPersona": "supportive"
+}

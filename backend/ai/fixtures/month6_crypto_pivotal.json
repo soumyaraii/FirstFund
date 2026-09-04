@@ -1,0 +1,32 @@
+{
+  "type": "decisionFeedback",
+  "description": "Month 6 - Crypto Temptation - pivotal month with best/worst case spectrum, analyst persona",
+
+  "month": 6,
+  "scenario": {
+    "title": "The Hot Tip",
+    "narrative": "A friend tells you: 'This crypto is guaranteed to go up.' Do you invest?"
+  },
+  "choice": { "id": "OPT_B", "text": "Invest a small amount" },
+
+  "previousState": { "month": 6, "savings": 70000, "emergencyFund": 25000, "investments": 45000, "debt": 0, "netWorth": 140000 },
+  "newState": { "month": 7, "savings": 60000, "emergencyFund": 25000, "investments": 55000, "debt": 0, "netWorth": 140000 },
+
+  "immediateImpact": { "savingsDelta": -10000, "investmentsDelta": 10000, "debtDelta": 0, "netWorthDelta": 0 },
+  "projected12MonthImpact": { "netWorthDelta": 12000 },
+
+  "choiceHistorySoFar": [
+    { "month": 1, "choiceId": "OPT_B", "tag": "SAVING_DISCIPLINE" },
+    { "month": 2, "choiceId": "OPT_B", "tag": "FRUGAL_HOUSING" },
+    { "month": 3, "choiceId": "OPT_B", "tag": "SIP_INVESTMENT" },
+    { "month": 4, "choiceId": "OPT_C", "tag": "AVOIDED_DEBT" },
+    { "month": 5, "choiceId": "OPT_A", "tag": "BOUGHT_INSURANCE" }
+  ],
+
+  "alternativePaths": [
+    { "label": "Safest Path (ignored the tip)", "netWorth": 132000 },
+    { "label": "Riskiest Path (invested everything)", "netWorth": 178000 }
+  ],
+
+  "mentorPersona": "analyst"
+}

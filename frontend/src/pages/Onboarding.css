@@ -1,0 +1,549 @@
+.onboarding-page {
+  min-height: 100vh;
+  background: var(--bg-primary, #031b12);
+  color: var(--cream, #f2eddc);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.onboarding-header {
+  height: 70px;
+
+  padding: 0 7%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba(155, 207, 75, 0.08);
+}
+
+.onboarding-logo {
+  font-size: 22px;
+  font-weight: 700;
+
+  letter-spacing: -1px;
+}
+
+.onboarding-logo span {
+  color: var(--green-bright, #9bcf4b);
+}
+
+.step-count {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--green-bright, #9bcf4b);
+}
+
+.step-count span {
+  color: rgba(242, 237, 220, 0.35);
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-container {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 24px 25px 0;
+}
+
+.progress-track {
+  height: 2px;
+
+  background: rgba(155, 207, 75, 0.12);
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+
+  background: var(--green-bright, #9bcf4b);
+
+  transition: width 0.35s ease;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.onboarding-container {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 70px 25px 80px;
+}
+
+.onboarding-content {
+  width: 100%;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.onboarding-eyebrow {
+  margin-bottom: 18px;
+
+  color: var(--green-bright, #9bcf4b);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.onboarding-content h1 {
+  max-width: 700px;
+
+  margin: 0;
+
+  font-size: clamp(36px, 5vw, 56px);
+
+  line-height: 1.08;
+
+  letter-spacing: -2px;
+
+  font-weight: 700;
+}
+
+.onboarding-description {
+  max-width: 570px;
+
+  margin-top: 18px;
+
+  color: rgba(242, 237, 220, 0.55);
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+.onboarding-options {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+
+  margin-top: 45px;
+}
+
+
+/* Salary has 5 options:
+   last card spans both columns */
+
+.onboarding-options
+.selection-card:last-child:nth-child(5) {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================
+   SELECTION CARD
+========================= */
+
+.selection-card {
+  position: relative;
+
+  min-height: 88px;
+
+  padding: 22px;
+
+  display: flex;
+  align-items: center;
+
+  text-align: left;
+
+  border: 1px solid rgba(155, 207, 75, 0.13);
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: var(--cream, #f2eddc);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.selection-card:hover {
+  border-color: rgba(155, 207, 75, 0.4);
+
+  background: rgba(155, 207, 75, 0.04);
+
+  transform: translateY(-2px);
+}
+
+.selection-card.selected {
+  border-color: var(--green-bright, #9bcf4b);
+
+  background: rgba(155, 207, 75, 0.08);
+
+  box-shadow:
+    0 0 0 1px rgba(155, 207, 75, 0.08);
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.selection-text {
+  padding-right: 30px;
+}
+
+.selection-title {
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.selection-sublabel {
+  display: block;
+
+  margin-top: 5px;
+
+  color: rgba(242, 237, 220, 0.4);
+
+  font-size: 12px;
+
+  font-weight: 400;
+}
+
+.selection-description {
+  margin-top: 9px;
+
+  max-width: 300px;
+
+  color: rgba(242, 237, 220, 0.5);
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   CHECK
+========================= */
+
+.selection-check {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(155, 207, 75, 0.25);
+
+  color: #07170e;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  transition: all 0.2s ease;
+}
+
+.selection-card.selected .selection-check {
+  background: var(--green-bright, #9bcf4b);
+
+  border-color: var(--green-bright, #9bcf4b);
+}
+
+
+/* =========================
+   HOUSING ICON
+========================= */
+
+.selection-icon {
+  width: 42px;
+  height: 42px;
+
+  margin-right: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: rgba(155, 207, 75, 0.08);
+
+  color: var(--green-bright, #9bcf4b);
+
+  font-size: 21px;
+}
+
+
+/* =========================
+   MENTORS
+========================= */
+
+.mentor-options {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mentor-options .selection-card {
+  min-height: 220px;
+
+  display: block;
+
+  padding: 25px;
+}
+
+.mentor-options .selection-text {
+  padding-right: 10px;
+}
+
+.mentor-options .selection-title {
+  margin-top: 45px;
+
+  font-size: 17px;
+}
+
+.mentor-options .selection-description {
+  margin-top: 12px;
+
+  max-width: none;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.onboarding-navigation {
+  margin-top: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-button {
+  border: none;
+
+  background: transparent;
+
+  color: rgba(242, 237, 220, 0.45);
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.back-button:hover:not(:disabled) {
+  color: var(--cream, #f2eddc);
+}
+
+.back-button:disabled {
+  visibility: hidden;
+}
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+.continue-button {
+  min-width: 175px;
+
+  padding: 15px 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 25px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: rgba(155, 207, 75, 0.15);
+
+  color: rgba(242, 237, 220, 0.35);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: not-allowed;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.continue-button.active {
+  background: var(--green-bright, #9bcf4b);
+
+  color: #07170e;
+
+  cursor: pointer;
+}
+
+.continue-button.active:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 25px rgba(155, 207, 75, 0.18);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .onboarding-header {
+    padding: 0 5%;
+  }
+
+  .onboarding-container {
+    padding-top: 50px;
+  }
+
+  .onboarding-options,
+  .mentor-options {
+    grid-template-columns: 1fr;
+  }
+
+  .onboarding-options
+  .selection-card:last-child:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .mentor-options .selection-card {
+    min-height: 170px;
+  }
+
+  .onboarding-navigation {
+    margin-top: 35px;
+  }
+
+  .continue-button {
+    min-width: 150px;
+  }
+}
+
+/* COMPACT DESKTOP LAYOUT
+   Uses real CSS sizing instead of browser zoom so the page fits
+   shorter laptop screens without creating a vertical scrollbar. */
+@media (min-width: 701px) {
+  .onboarding-header { height: 60px; }
+  .onboarding-logo { font-size: 19px; }
+  .step-count { font-size: 11px; }
+
+  .progress-container {
+    padding-top: 18px;
+  }
+
+  .onboarding-container {
+    padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .onboarding-eyebrow {
+    margin-bottom: 12px;
+    font-size: 9px;
+  }
+
+  .onboarding-content h1 {
+    font-size: clamp(32px, 3.5vw, 44px);
+    letter-spacing: -1.7px;
+  }
+
+  .onboarding-description {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .onboarding-options {
+    margin-top: 28px;
+    gap: 9px;
+  }
+
+  .selection-card {
+    min-height: 70px;
+    padding: 16px 18px;
+    border-radius: 11px;
+  }
+
+  .selection-title { font-size: 14px; }
+  .selection-sublabel { margin-top: 3px; font-size: 10px; }
+  .selection-description { margin-top: 6px; font-size: 10px; line-height: 1.35; }
+  .selection-check { width: 19px; height: 19px; top: 12px; right: 12px; font-size: 10px; }
+  .selection-icon { width: 36px; height: 36px; margin-right: 12px; font-size: 18px; }
+
+  .mentor-options {
+    margin-top: 28px;
+    gap: 9px;
+  }
+
+  .mentor-options .selection-card {
+    min-height: 145px;
+    padding: 18px;
+  }
+
+  .mentor-options .selection-title {
+    margin-top: 30px;
+    font-size: 14px;
+  }
+
+  .mentor-options .selection-description {
+    margin-top: 7px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .onboarding-navigation { margin-top: 25px; }
+  .back-button, .continue-button { font-size: 11px; }
+  .continue-button { min-width: 155px; padding: 11px 18px; gap: 18px; }
+}
+
+

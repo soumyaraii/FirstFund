@@ -17,11 +17,27 @@ const { generateDecisionFeedback, generateFinalSummary } = require('./ai/index.j
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// Enable CORS for all origins, methods, and preflight headers
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false
+}));
+
+// Explicitly handle preflight requests across all endpoints
+app.options('*', cors());
+
 app.use(express.json());
+
+// Health Check route to verify backend is active from a browser or phone
+app.get('/', (req, res) => {
+  res.json({ status: "healthy", message: "FirstFund Backend is live!" });
+});
 
 // In-Memory Storage
 const sessions = new Map();
+
 
 // Configuration Constants
 const SALARY_MAP = {

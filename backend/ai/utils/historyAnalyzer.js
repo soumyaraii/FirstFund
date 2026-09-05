@@ -19,8 +19,22 @@
  */
 
 // Broad buckets so patterns are readable even with varied tag names.
-const CAUTIOUS_TAGS = ["SAVING_DISCIPLINE", "FRUGAL_HOUSING", "EMERGENCY_FUND", "AVOIDED_DEBT"];
-const RISKY_TAGS = ["RISK_TAKING", "AGGRESSIVE_INVESTMENT", "SKIPPED_INSURANCE", "TOOK_DEBT"];
+// NOTE: matched against the ACTUAL lowercase snake_case tags emitted by
+// Person 1's scenarios array in server.js (e.g. "saving_discipline",
+// "debt_trap") — not uppercase placeholder names. Comparison is also
+// done case-insensitively below as a safety net against future tag
+// naming changes.
+const CAUTIOUS_TAGS = [
+  "saving_discipline", "frugal_housing", "disciplined_investing",
+  "delayed_gratification", "risk_protection", "spending_discipline",
+  "goal_based_saving", "emergency_readiness", "emergency_buffer_used",
+  "balanced_bonus", "balanced_growth", "cash_first"
+];
+const RISKY_TAGS = [
+  "discretionary_splurge", "lifestyle_inflation", "debt_trap",
+  "underinsured", "fomo_speculation", "lifestyle_spending",
+  "future_debt", "bonus_splurge"
+];
 
 /**
  * @param {Array} choiceHistorySoFar
@@ -31,8 +45,14 @@ function summarizePattern(choiceHistorySoFar = []) {
     return ""; // not enough history yet to claim a pattern
   }
 
-  const cautiousCount = choiceHistorySoFar.filter(c => CAUTIOUS_TAGS.includes(c.tag)).length;
-  const riskyCount = choiceHistorySoFar.filter(c => RISKY_TAGS.includes(c.tag)).length;
+  // .toLowerCase() on both sides as defense-in-depth, in case tag casing
+  // ever changes again on Person 1's side.
+  const cautiousCount = choiceHistorySoFar.filter(c =>
+    CAUTIOUS_TAGS.includes((c.tag || "").toLowerCase())
+  ).length;
+  const riskyCount = choiceHistorySoFar.filter(c =>
+    RISKY_TAGS.includes((c.tag || "").toLowerCase())
+  ).length;
   const total = choiceHistorySoFar.length;
 
   if (cautiousCount / total >= 0.6) {

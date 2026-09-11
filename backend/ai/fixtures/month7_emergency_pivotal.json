@@ -1,0 +1,31 @@
+{
+  "type": "decisionFeedback",
+  "description": "Month 7 - Emergency - pivotal month, user had a good emergency fund, supportive persona",
+
+  "month": 7,
+  "scenario": {
+    "title": "Unexpected Emergency",
+    "narrative": "You suddenly need ₹25,000 for a family medical expense."
+  },
+  "choice": { "id": "OPT_A", "text": "Use emergency fund" },
+
+  "previousState": { "month": 7, "savings": 60000, "emergencyFund": 40000, "investments": 55000, "debt": 0, "netWorth": 155000 },
+  "newState": { "month": 8, "savings": 60000, "emergencyFund": 15000, "investments": 55000, "debt": 0, "netWorth": 130000 },
+
+  "immediateImpact": { "savingsDelta": 0, "investmentsDelta": 0, "debtDelta": 0, "netWorthDelta": -25000 },
+  "projected12MonthImpact": { "netWorthDelta": -25000 },
+
+  "choiceHistorySoFar": [
+    { "month": 1, "choiceId": "OPT_B", "tag": "SAVING_DISCIPLINE" },
+    { "month": 2, "choiceId": "OPT_B", "tag": "FRUGAL_HOUSING" },
+    { "month": 3, "choiceId": "OPT_A", "tag": "EMERGENCY_FUND" },
+    { "month": 5, "choiceId": "OPT_A", "tag": "BOUGHT_INSURANCE" }
+  ],
+
+  "alternativePaths": [
+    { "label": "Had no emergency fund (would need debt)", "netWorth": 105000 },
+    { "label": "Had a larger emergency fund", "netWorth": 140000 }
+  ],
+
+  "mentorPersona": "supportive"
+}

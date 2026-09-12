@@ -467,3 +467,23 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+.option-tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(155, 207, 75, 0.4);
+  color: var(--green-bright, #9bcf4b);
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 700;
+  cursor: help;
+  vertical-align: middle;
+}
+
+.option-tooltip-icon:hover {
+  background: rgba(155, 207, 75, 0.15);
+}

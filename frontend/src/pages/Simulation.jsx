@@ -154,8 +154,17 @@ function Simulation({ simulationData, onDecision, onBack, canGoBack, loading }) 
                     {option.id}
                   </span>
 
-                  <span className="option-text">
+                                    <span className="option-text">
                     {option.text}
+                    {option.tooltip && (
+                      <span
+                        className="option-tooltip-icon"
+                        title={option.tooltip}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        i
+                      </span>
+                    )}
                   </span>
 
                   <span className="option-arrow">

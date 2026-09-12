@@ -78,7 +78,8 @@ const scenarios = [
     id: 3, month: 3, category: "SAVING", title: "Build Your First Investment Habit",
     narrative: "You have started earning consistently. You can now turn part of this month's surplus into a long-term habit.",
     options: [
-      { id: "OPT_A", text: "Invest ₹10,000 in a diversified index fund", tag: "disciplined_investing", effects: { savingsDelta: -10000, emergencyDelta: 0, investmentDelta: 10000, debtDelta: 0, discretionarySpent: 0 } },
+      { id: "OPT_A", text: "Invest ₹10,000 in a diversified index fund", tag: "disciplined_investing",  tooltip: "A single investment 'basket' that holds small shares of top 50–500 major companies in the market. You own a tiny slice of the whole economy instead of betting on a single stock.",
+      effects: { savingsDelta: -10000, emergencyDelta: 0, investmentDelta: 10000, debtDelta: 0, discretionarySpent: 0 } },
       { id: "OPT_B", text: "Keep the ₹10,000 in your savings account", tag: "cash_first", effects: { savingsDelta: 10000, emergencyDelta: 0, investmentDelta: 0, debtDelta: 0, discretionarySpent: 0 } }
     ]
   },
@@ -103,8 +104,8 @@ const scenarios = [
     narrative: "A friend shares a high-risk speculative tip claiming guaranteed fast returns.",
     isPivotal: true,
     options: [
-      { id: "OPT_A", text: "Put ₹25,000 into the speculative asset", tag: "fomo_speculation", effects: { savingsDelta: -25000, emergencyDelta: 0, investmentDelta: 5000, debtDelta: 0, discretionarySpent: 0 } },
-      { id: "OPT_B", text: "Stick to index mutual funds (₹10,000)", tag: "disciplined_investing", effects: { savingsDelta: -10000, emergencyDelta: 0, investmentDelta: 10000, debtDelta: 0, discretionarySpent: 0 } }
+      { id: "OPT_A", text: "Put ₹25,000 into the speculative asset", tag: "fomo_speculation", tooltip: "High-risk financial instruments (like obscure cryptocurrencies or penny stocks) driven purely by social hype, rumors, and volatile price swings rather than steady underlying business revenue.", effects: { savingsDelta: -25000, emergencyDelta: 0, investmentDelta: 5000, debtDelta: 0, discretionarySpent: 0 } },
+      { id: "OPT_B", text: "Stick to index mutual funds (₹10,000)", tag: "disciplined_investing", tooltip: "An index mutual fund (A pool where thousands of investors combine their money) is a fund that copies a specific stock market list (like the Nifty 50 in India or S&P 500 in the US) rather than trying to pick individual winning stocks", effects: { savingsDelta: -10000, emergencyDelta: 0, investmentDelta: 10000, debtDelta: 0, discretionarySpent: 0 } }
     ]
   },
   {
@@ -120,14 +121,14 @@ const scenarios = [
     narrative: "Your friends plan an expensive weekend trip. You can afford it, but it would slow your financial progress.",
     options: [
       { id: "OPT_A", text: "Spend ₹12,000 on the trip", tag: "lifestyle_spending", effects: { savingsDelta: -12000, emergencyDelta: 0, investmentDelta: 0, debtDelta: 0, discretionarySpent: 12000 } },
-      { id: "OPT_B", text: "Choose a ₹3,000 local plan and save the rest", tag: "spending_discipline", effects: { savingsDelta: 9000, emergencyDelta: 0, investmentDelta: 0, debtDelta: 0, discretionarySpent: 3000 } }
+      { id: "OPT_B", text: "Choose a ₹3,000 local plan and save the rest", tag: "spending_discipline", tooltip:"", effects: { savingsDelta: 9000, emergencyDelta: 0, investmentDelta: 0, debtDelta: 0, discretionarySpent: 3000 } }
     ]
   },
   {
     id: 9, month: 9, category: "GOALS", title: "Plan for a Near-Term Goal",
     narrative: "You want to buy a laptop next year. Decide how to prepare without taking on unnecessary debt.",
     options: [
-      { id: "OPT_A", text: "Create a ₹15,000 goal fund from this month's surplus", tag: "goal_based_saving", effects: { savingsDelta: 15000, emergencyDelta: 0, investmentDelta: 0, debtDelta: 0, discretionarySpent: 0 } },
+      { id: "OPT_A", text: "Create a ₹15,000 goal fund from this month's surplus", tag: "goal_based_saving", tooltip:"A goal fund (often called a sinking fund or target fund) is money set aside in a separate bucket specifically for a planned, upcoming expense—like buying a laptop, paying an annual premium, or taking a planned trip.", effects: { savingsDelta: 15000, emergencyDelta: 0, investmentDelta: 0, debtDelta: 0, discretionarySpent: 0 } },
       { id: "OPT_B", text: "Use a credit card when the time comes", tag: "future_debt", effects: { savingsDelta: 5000, emergencyDelta: 0, investmentDelta: 0, debtDelta: 15000, discretionarySpent: 0 } }
     ]
   },
@@ -151,8 +152,8 @@ const scenarios = [
     id: 12, month: 12, category: "YEAR_END", title: "Year-End Review",
     narrative: "You completed your first working year! How do you deploy your final surplus?",
     options: [
-      { id: "OPT_A", text: "Diversify into long-term index funds and clear remaining debt", tag: "balanced_growth", effects: { savingsDelta: 5000, emergencyDelta: 5000, investmentDelta: 20000, debtDelta: -36000, discretionarySpent: 0 } },
-      { id: "OPT_B", text: "Keep the final surplus liquid for flexibility", tag: "liquidity_first", effects: { savingsDelta: 20000, emergencyDelta: 5000, investmentDelta: 0, debtDelta: 0, discretionarySpent: 0 } }
+      { id: "OPT_A", text: "Diversify into long-term index funds and clear remaining debt", tag: "balanced_growth", tooltip:"Debt Clearance: Eliminating borrowed money (like credit card dues or EMI loans) to stop paying interest charges.  Index Funds: Reallocating surplus cash into diversified market-wide assets for long-term compound growth. ", effects: { savingsDelta: 5000, emergencyDelta: 5000, investmentDelta: 20000, debtDelta: -36000, discretionarySpent: 0 } },
+      { id: "OPT_B", text: "Keep the final surplus liquid for flexibility", tag: "liquidity_first", tooltip: "Holding your remaining cash in bank deposits or liquid reserves where it can be converted to physical cash immediately without lock-in periods or market risk.", effects: { savingsDelta: 20000, emergencyDelta: 5000, investmentDelta: 0, debtDelta: 0, discretionarySpent: 0 } }
     ]
   }
 ];

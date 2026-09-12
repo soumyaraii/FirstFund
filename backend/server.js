@@ -241,6 +241,85 @@ function applyEffects(financials, effects, isEmergencyScenario) {
 }
 
 // ---------------------------------------------------------
+// BUGFIX: the final scorecard used to hand back 4 hardcoded
+// metric numbers (88 / 70 / 75 / 80) with only emergencyReadiness
+// depending on state (and even that was a single 90-or-45 if/else).
+// That meant totalScore only ever had two possible values (81 or 72)
+// no matter what the player actually chose across the 12 months —
+// which is why everyone saw a 72.
+//
+// Fix: derive every metric from the tags the player actually picked
+// (each scenario option already carries a semantic tag, e.g.
+// "saving_discipline", "fomo_speculation", "debt_trap") plus the
+// final financial state, so the score reflects the real playthrough.
+// ---------------------------------------------------------
+const TAG_IMPACT = {
+  // Month 1 — first paycheck
+  saving_discipline:     { metric: 'savingDiscipline',     points: 10 },
+  discretionary_splurge: { metric: 'savingDiscipline',     points: -10 },
+  // Month 2 — housing
+  frugal_housing:        { metric: 'spendingDiscipline',   points: 10 },
+  lifestyle_inflation:   { metric: 'spendingDiscipline',   points: -10 },
+  // Month 3 / 6 — investing habit + FOMO test
+  disciplined_investing: { metric: 'investmentBehaviour',  points: 10 },
+  cash_first:            { metric: 'investmentBehaviour',  points: -6 },
+  fomo_speculation:      { metric: 'investmentBehaviour',  points: -12 },
+  // Month 4 — credit/EMI trap
+  delayed_gratification: { metric: 'riskManagement',       points: 10 },
+  debt_trap:             { metric: 'riskManagement',       points: -12 },
+  // Month 5 — insurance
+  risk_protection:       { metric: 'riskManagement',       points: 10 },
+  underinsured:          { metric: 'riskManagement',       points: -10 },
+  // Month 8 — lifestyle creep
+  spending_discipline:   { metric: 'spendingDiscipline',   points: 10 },
+  lifestyle_spending:    { metric: 'spendingDiscipline',   points: -10 },
+  // Month 9 — near-term goal planning
+  goal_based_saving:     { metric: 'savingDiscipline',     points: 8 },
+  future_debt:           { metric: 'savingDiscipline',     points: -8 },
+  // Month 10 — bonus
+  balanced_bonus:        { metric: 'savingDiscipline',     points: 6 },
+  bonus_splurge:         { metric: 'savingDiscipline',     points: -6 },
+  // Month 11 — safety net vs growth
+  emergency_readiness:   { metric: 'emergencyReadiness',   points: 12 },
+  growth_focus:          { metric: 'investmentBehaviour',  points: 6 },
+  // Month 12 — year-end review
+  balanced_growth:       { metric: 'investmentBehaviour',  points: 8 },
+  liquidity_first:       { metric: 'savingDiscipline',     points: 4 }
+};
+
+function computeMetrics(session) {
+  const f = session.financials;
+  const metrics = {
+    savingDiscipline: 50,
+    riskManagement: 50,
+    spendingDiscipline: 50,
+    investmentBehaviour: 50,
+    emergencyReadiness: 50
+  };
+
+  // Walk every real decision the player made and apply its impact.
+  (session.history || []).forEach(entry => {
+    const impact = TAG_IMPACT[entry.tag];
+    if (impact) metrics[impact.metric] += impact.points;
+  });
+
+  // emergencyReadiness also reflects the ACTUAL final buffer size,
+  // scaled by how many months of fixed expenses it would cover,
+  // instead of one fixed ₹20,000 on/off cutoff.
+  const monthsOfCover = f.fixedExpenses > 0
+    ? f.emergencyFund / f.fixedExpenses
+    : (f.emergencyFund > 0 ? 3 : 0);
+  metrics.emergencyReadiness += Math.round(Math.min(3, monthsOfCover) * 10) - 15;
+
+  // Clamp every metric to a valid 0–100 score.
+  Object.keys(metrics).forEach(key => {
+    metrics[key] = Math.max(0, Math.min(100, Math.round(metrics[key])));
+  });
+
+  return metrics;
+}
+
+// ---------------------------------------------------------
 // Computes the "alternativePaths" spectrum (feature 7) for
 // pivotal months only. Returns null for ordinary months.
 //
@@ -456,13 +535,8 @@ app.get('/api/simulation/:sessionId/scorecard', async (req, res) => {
     const f = session.financials;
 
     // Field names now match the locked contract (metrics.*)
-    const metrics = {
-      savingDiscipline: 88,
-      riskManagement: 70,
-      spendingDiscipline: 75,
-      investmentBehaviour: 80,
-      emergencyReadiness: f.emergencyFund >= 20000 ? 90 : 45
-    };
+    // Derived from the player's actual 12-month decision history — see computeMetrics().
+    const metrics = computeMetrics(session);
 
     const totalScore = Math.round(
       (metrics.savingDiscipline + metrics.riskManagement + metrics.spendingDiscipline +
